@@ -26,6 +26,8 @@ window.onload = async () => {
 async function handleCallStateChange(call) {
   const currentDate = new Date();
   const currentHour = currentDate.getHours();
+    appendLogMessage(call.state);
+
     appendLogMessage("*** CALL INFORMATION ***")
     appendLogMessage("- Caller ID: ", call.id);
     appendLogMessage("- Call type: ", call.callType);

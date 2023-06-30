@@ -8,6 +8,8 @@ app.onReady().then(() => {
     app.listen().then(() => {
       app.on("sidebar:callStateChanged", (call) => {
         log("Call state changed. Call object:", call);
+        log("Call state changed. Call object:", { message: call });
+
         handleCallStateChange(call);
       });
       app.on("application:viewStateChanged", (viewState) => {

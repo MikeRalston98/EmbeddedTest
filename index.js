@@ -7,11 +7,11 @@ app.onReady().then(() => {
     log("onReady()", { message: "EA is ready." });
     app.listen().then(() => {
       app.on("sidebar:callStateChanged", (call) => {
-        console.log("Call state changed. Call object:", call);
+        log("Call state changed. Call object:", call);
         handleCallStateChange(call);
       });
       app.on("application:viewStateChanged", (viewState) => {
-        console.log("View state changed. Current view:", viewState);
+        log("View state changed. Current view:", viewState);
         switch (viewState) {
           case "IN_FOCUS":
             // User has noticed the badge and has responded, so we can remove it...
@@ -25,28 +25,28 @@ app.onReady().then(() => {
 function handleCallStateChange(call) {
   switch (call.state) {
     case "Started":
-      console.log("A call has come in...");
+      log("A call has come in...");
       
       // Check to see if the call is from a VIP...
       if (call.id === importantContactId) {
-        console.log("A VIP call is incoming! Notify the user...");
+        log("A VIP call is incoming! Notify the user...");
         // Initialize the sidebar, passing in the incremented the badge count...
         initializeSideBar(callCount++);
       }
       
       // For all calls, log the information...
-      console.log("*** CALL INFORMATION ***")
-      console.log("- Caller ID: ", call.id);
-      console.log("- Call type: ", call.callType);
-      console.log("- Call state: ", call.state);
-      console.log("- Local Participant: ", call.localParticipant);
-      console.log("- Remote Participants list: ", call.remoteParticpants);
+      log("*** CALL INFORMATION ***")
+      log("- Caller ID: ", call.id);
+      log("- Call type: ", call.callType);
+      log("- Call state: ", call.state);
+      log("- Local Participant: ", call.localParticipant);
+      log("- Remote Participants list: ", call.remoteParticpants);
       break;
     case "Connected":
-      console.log("Call is connected.");
+      log("Call is connected.");
       break;
     case "Ended":
-      console.log("Call is ended.");
+      log("Call is ended.");
       break;
     default:
       break;
@@ -56,18 +56,18 @@ function handleCallStateChange(call) {
 function initializeSideBar(callCount) {
   app.context.getSidebar().then((s) => {
       sidebar = s;
-      console.log("Show a badge on the sidebar...")
+      log("Show a badge on the sidebar...")
       handleBadge(callCount, sidebar);
     })
     .catch((error) => {
-      console.log("getSidebar() failed. Error: ", Webex.Application.ErrorCodes[error]);
+      log("getSidebar() failed. Error: ", Webex.Application.ErrorCodes[error]);
     });
 }
 
 function handleBadge(callCount, sidebar) {
   // Make sure the sidebar is available..
   if (!sidebar) {
-    console.log("Sidebar info is not available. Error: ", Webex.Application.ErrorCodes[4]);
+    log("Sidebar info is not available. Error: ", Webex.Application.ErrorCodes[4]);
     return;
   }
 
@@ -79,9 +79,9 @@ function handleBadge(callCount, sidebar) {
 
   // Show the badge...
   sidebar.showBadge(badge).then((success) => {
-      console.log("sidebar.showBadge() successful.", success);
+      log("sidebar.showBadge() successful.", success);
     }).catch((error) => {
-      console.log("sidebar.showBadge() failed. Error: ", Webex.Application.ErrorCodes[error]);
+      log("sidebar.showBadge() failed. Error: ", Webex.Application.ErrorCodes[error]);
     });
 }
 

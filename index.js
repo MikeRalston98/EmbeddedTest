@@ -32,7 +32,7 @@ function handleCallStateChange(call) {
   switch (call.state) {
     case "Started":
       console.log("A call has come in...");
-      
+      initializeSideBar(callCount++);
       // Check to see if the call is from a VIP...
       if (call.id === importantContactId) {
         console.log("A VIP call is incoming! Notify the user...");

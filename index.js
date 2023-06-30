@@ -1,8 +1,10 @@
 // Check URL Hash for Login with Webex Token
 parseJwtFromURLHash();
 
-const app = new window.Webex.Application();
-
+//const app = new window.Webex.Application();
+const app = new webex.Application();
+//await app.onReady();
+const sidebar = await app.context.getSidebar();
 app.onReady().then(() => {
     log("onReady()", { message: "EA is reeady." });
     log("onReady()", { message: "EA is readyyy." });

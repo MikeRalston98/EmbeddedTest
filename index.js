@@ -1,7 +1,17 @@
+
+function appendLogMessage(message) {
+  const consoleElement = document.getElementById('console');
+  const logEntry = document.createElement('li');
+  logEntry.textContent = message;
+  consoleElement.appendChild(logEntry);
+}
+
 window.onload = async () => {
     const app = new window.webex.Application();
     await app.onReady();
     sidebar = await app.context.getSidebar();
+    appendLogMessage('Logging testing');
+
     app.listen().then(() => {
         app.on("sidebar:callStateChanged", handleCallStateChange);
         app.on("application:viewStateChanged", handleViewStateChange)

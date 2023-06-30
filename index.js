@@ -1,23 +1,30 @@
 // Check URL Hash for login with Webex Token
 parseJwtFromURLHash();
 
-const app = new window.Webex.Application();
-const embedded_app = new webex.Application();
-await embedded_app.onReady();
+const config = {
+  logs: {
+    logLevel: 0   //INFO: 0, WARN: 1, ERROR: 2, SILENT: 3
+  }
+}
+
+const app = new window.Webex.Application(config);
+//const embedded_app = new webex.Application();
+//await embedded_app.onReady();
 await app.onReady();
 const sidebar = await app.context.getSidebar();
-embedded_app.onReady().then(() => {
+
+app.onReady().then(() => {
     console.log("onReady()", { message: "EA is ready." });
     log("onReady()", { message: "EA is reeadyyy." });
 
-    embedded_app.listen().then(() => {
-      embedded_app.on("sidebar:callStateChanged", (call) => {
+    app.listen().then(() => {
+      app.on("sidebar:callStateChanged", (call) => {
         console.log("Call state changed. Call object:", call);
         console.log("Call state changed. Call object:", { message: call });
 
         handleCallStateChange(call);
       });
-      embedded_app.on("application:viewStateChanged", (viewState) => {
+      app.on("application:viewStateChanged", (viewState) => {
         console.log("View state changed. Current view:", viewState);
         switch (viewState) {
           case "IN_FOCUS":
@@ -61,7 +68,7 @@ function handleCallStateChange(call) {
 }
 
 function initializeSideBar(callCount) {
-  embedded_app.context.getSidebar().then((s) => {
+  app.context.getSidebar().then((s) => {
       sidebar = s;
       console.log("Show a badge on the sidebar...")
       handleBadge(callCount, sidebar);

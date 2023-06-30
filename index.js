@@ -7,7 +7,7 @@ const app = new webex.Application();
 const sidebar = await app.context.getSidebar();
 app.onReady().then(() => {
     console.log("onReady()", { message: "EA is ready." });
-    console.log("onReady()", { message: "EA is reeadyyy." });
+    log("onReady()", { message: "EA is reeadyyy." });
 
     app.listen().then(() => {
       app.on("sidebar:callStateChanged", (call) => {

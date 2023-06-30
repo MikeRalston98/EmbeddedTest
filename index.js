@@ -24,41 +24,24 @@ window.onload = async () => {
 }
 
 async function handleCallStateChange(call) {
-    var startTime = '15:10:10';
-    var endTime = '22:30:00';
-    
-    currentDate = new Date()   
-    
-    startDate = new Date(currentDate.getTime());
-    startDate.setHours(startTime.split(":")[0]);
-    startDate.setMinutes(startTime.split(":")[1]);
-    startDate.setSeconds(startTime.split(":")[2]);
-    
-    endDate = new Date(currentDate.getTime());
-    endDate.setHours(endTime.split(":")[0]);
-    endDate.setMinutes(endTime.split(":")[1]);
-    endDate.setSeconds(endTime.split(":")[2]);
-    
-    
-    valid = startDate < currentDate && endDate > currentDate
-    callInfo = call;
-    switch (call.state) {
-      case "Started":
-        appendLogMessage("A call has come in...");
-        if (valid) {
-            await sidebar.showBadge({
-            badgeType: 'count',
-            count: 2
-        });
-        }
-        else {
-        await sidebar.showBadge({
-            badgeType: 'count',
-            count: 1
-        });
-        break;
-        }
-    }
+  const currentDate = new Date();
+  const currentHour = currentDate.getHours();
+
+  if (currentHour >= 8 && currentHour < 17) {
+    // Current time is between 8 AM and 5 PM
+    console.log("A call has come in...");
+    await sidebar.showBadge({
+      badgeType: 'count',
+      count: 2
+    });
+  } else {
+    // Current time is outside the specified range
+    console.log("A call has come in, but outside the valid time range...");
+    await sidebar.showBadge({
+      badgeType: 'count',
+      count: 1
+    });
+  }
 }
 
 function handleViewStateChange(viewState){

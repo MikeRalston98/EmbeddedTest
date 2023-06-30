@@ -5,6 +5,8 @@ const app = new window.Webex.Application();
 
 app.onReady().then(() => {
     log("onReady()", { message: "EA is ready." });
+    log("onReady()", { message: "EA is readyyy." });
+
     app.listen().then(() => {
       app.on("sidebar:callStateChanged", (call) => {
         log("Call state changed. Call object:", call);

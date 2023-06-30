@@ -19,7 +19,7 @@ window.onload = async () => {
         app.on("sidebar:callStateChanged", handleCallStateChange);
         app.on("application:viewStateChanged", handleViewStateChange)
     }).catch((reason) => {
-        appendLogMessage("listen: fail reason=" + webex.Application.ErrorCodes[reason]);
+        appendLogMessage('fail reason=  webex.Application.ErrorCodes[reason]');
     });
 }
 
@@ -29,14 +29,14 @@ async function handleCallStateChange(call) {
 
   if (currentHour >= 8 && currentHour < 17) {
     // Current time is between 8 AM and 5 PM
-    console.log("A call has come in...");
+    appendLogMessage("A call has come in...");
     await sidebar.showBadge({
       badgeType: 'count',
       count: 2
     });
   } else {
     // Current time is outside the specified range
-    console.log("A call has come in, but outside the valid time range...");
+    appendLogMessage("A call has come in, but outside the valid time range...");
     await sidebar.showBadge({
       badgeType: 'count',
       count: 1

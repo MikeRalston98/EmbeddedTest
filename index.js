@@ -2,7 +2,10 @@
 function appendLogMessage(message) {
   const consoleElement = document.getElementById('console');
   const logEntry = document.createElement('li');
-  logEntry.textContent = message;
+  
+  const timestamp = new Date().toLocaleTimeString();
+  logEntry.textContent = `[${timestamp}] ${message}`;
+  
   consoleElement.appendChild(logEntry);
 }
 
@@ -16,7 +19,7 @@ window.onload = async () => {
         app.on("sidebar:callStateChanged", handleCallStateChange);
         app.on("application:viewStateChanged", handleViewStateChange)
     }).catch((reason) => {
-        console.error("listen: fail reason=" + webex.Application.ErrorCodes[reason]);
+        appendLogMessage("listen: fail reason=" + webex.Application.ErrorCodes[reason]);
     });
 }
 
@@ -41,7 +44,7 @@ async function handleCallStateChange(call) {
     callInfo = call;
     switch (call.state) {
       case "Started":
-        console.log("A call has come in...");
+        appendLogMessage("A call has come in...");
         if (valid) {
             await sidebar.showBadge({
             badgeType: 'count',

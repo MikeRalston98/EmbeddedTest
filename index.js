@@ -3,7 +3,7 @@ parseJwtFromURLHash();
 
 //const app = new window.Webex.Application();
 const app = new webex.Application();
-//await app.onReady();
+await app.onReady();
 const sidebar = await app.context.getSidebar();
 app.onReady().then(() => {
     console.log("onReady()", { message: "EA is ready." });

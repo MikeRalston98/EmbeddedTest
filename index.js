@@ -26,7 +26,12 @@ window.onload = async () => {
 async function handleCallStateChange(call) {
   const currentDate = new Date();
   const currentHour = currentDate.getHours();
-
+    appendLogMessage("*** CALL INFORMATION ***")
+    appendLogMessage("- Caller ID: ", call.id);
+    appendLogMessage("- Call type: ", call.callType);
+    appendLogMessage("- Call state: ", call.state);
+    appendLogMessage("- Local Participant: ", call.localParticipant);
+    appendLogMessage("- Remote Participants list: ", call.remoteParticpants);
   if (currentHour >= 8 && currentHour < 17) {
     // Current time is between 8 AM and 5 PM
     appendLogMessage("A call has come in...");

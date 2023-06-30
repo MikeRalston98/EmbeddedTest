@@ -18,7 +18,7 @@ function appendLogMessage(message) {
  * Logs the app object from `new window.Webex.Application();`
  */
 function handleDisplayAppInfo() {
-  log("Webex Embedded App Application Object", app);
+  appendLogMessage("Webex Embedded App Application Object", app);
 }
 
 /**
@@ -28,10 +28,10 @@ function handleGetUser() {
   app.context
     .getUser()
     .then((u) => {
-      log("getUser()", u);
+      appendLogMessage("getUser()", u);
     })
     .catch((error) => {
-      log(
+      appendLogMessage(
         "getUser() promise failed with error",
         Webex.Application.ErrorCodes[error]
       );
@@ -45,10 +45,10 @@ function handleGetMeeting() {
   app.context
     .getMeeting()
     .then((m) => {
-      log("getMeeting()", m);
+      appendLogMessage("getMeeting()", m);
     })
     .catch((error) => {
-      log(
+      appendLogMessage(
         "getMeeting() promise failed with error",
         Webex.Application.ErrorCodes[error]
       );
@@ -62,10 +62,10 @@ function handleGetSpace() {
   app.context
     .getSpace()
     .then((s) => {
-      log("getSpace()", s);
+      appendLogMessage("getSpace()", s);
     })
     .catch((error) => {
-      log(
+      appendLogMessage(
         "getSpace() promise failed with error",
         Webex.Application.ErrorCodes[error]
       );
@@ -77,7 +77,7 @@ function handleGetSpace() {
  */
 function handleSystemBrowserOAuth() {
   // System Browser OAuth Support is only for 1.5.0 SDK and above
-  log('app.isSdkSupported("1.5.0")', app.isSdkSupported("1.5.0"));
+  appendLogMessage('app.isSdkSupported("1.5.0")', app.isSdkSupported("1.5.0"));
   if (!app.isSdkSupported("1.5.0")) {
     return;
   }
@@ -88,7 +88,7 @@ function handleSystemBrowserOAuth() {
   // Be sure to add the SSO domain to your "valid domains" configuration
   const SSOAuthUrl = `https://oauth.mocklab.io/oauth/authorize?response_type=code&redirect_uri=${webexAppRedirectUri}`;
 
-  log("Initiating SSO flow in system browser", true);
+  appendLogMessage("Initiating SSO flow in system browser", true);
   // Initiate SSO flow in system browser
   app
     .initiateSystemBrowserOAuth(SSOAuthUrl)

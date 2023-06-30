@@ -11,15 +11,40 @@ window.onload = async () => {
 }
 
 async function handleCallStateChange(call) {
+    var startTime = '15:10:10';
+    var endTime = '22:30:00';
+    
+    currentDate = new Date()   
+    
+    startDate = new Date(currentDate.getTime());
+    startDate.setHours(startTime.split(":")[0]);
+    startDate.setMinutes(startTime.split(":")[1]);
+    startDate.setSeconds(startTime.split(":")[2]);
+    
+    endDate = new Date(currentDate.getTime());
+    endDate.setHours(endTime.split(":")[0]);
+    endDate.setMinutes(endTime.split(":")[1]);
+    endDate.setSeconds(endTime.split(":")[2]);
+    
+    
+    valid = startDate < currentDate && endDate > currentDate
     callInfo = call;
     switch (call.state) {
       case "Started":
         console.log("A call has come in...");
+        if (valid) {
+            await sidebar.showBadge({
+            badgeType: 'count',
+            count: 2
+        });
+        }
+        else {
         await sidebar.showBadge({
             badgeType: 'count',
             count: 1
         });
         break;
+        }
     }
 }
 

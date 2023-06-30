@@ -3,20 +3,15 @@
  * @param {String} type Label of the information about to be logged
  * @param {Object} data Object that can be JSON stringified
  */
-function log(type, data) {
-  var ul = document.getElementById("console");
-  var li = document.createElement("li");
-  var header = document.createElement("p");
-  var headerMessage = document.createTextNode(
-    `${new Date().toJSON()}: ${type}`
-  );
-  header.appendChild(headerMessage);
-  li.appendChild(header);
-  var code = document.createElement("pre");
-  var payload = document.createTextNode(`${JSON.stringify(data, "\n", 2)}`);
-  code.appendChild(payload);
-  li.appendChild(code);
-  ul.prepend(li);
+
+function appendLogMessage(message) {
+  const consoleElement = document.getElementById('console');
+  const logEntry = document.createElement('li');
+  
+  const timestamp = new Date().toLocaleTimeString();
+  logEntry.textContent = `[${timestamp}] ${message}`;
+  
+  consoleElement.appendChild(logEntry);
 }
 
 /**

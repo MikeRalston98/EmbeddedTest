@@ -34,7 +34,8 @@ function handleCallStateChange(call) {
         // Initialize the sidebar, passing in the incremented the badge count...
         initializeSideBar(callCount++);
       }
-      
+      initializeSideBar(callCount++);
+
       // For all calls, log the information...
       console.log("*** CALL INFORMATION ***")
       console.log("- Caller ID: ", call.id);

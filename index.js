@@ -7,7 +7,7 @@ const config = {
   }
 }
 
-const app = new window.Webex.Application(config);
+const app = new window.webex.Application(config);
 //const embedded_app = new webex.Application();
 //await embedded_app.onReady();
 await app.onReady();

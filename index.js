@@ -1,22 +1,22 @@
 // Check URL Hash for login with Webex Token
 parseJwtFromURLHash();
 
-//const app = new window.Webex.Application();
-const app = new webex.Application();
-await app.onReady();
+const app = new window.Webex.Application();
+const embedded_app = new webex.Application();
+await embedded_app.onReady();
 const sidebar = await app.context.getSidebar();
-app.onReady().then(() => {
+embedded_app.onReady().then(() => {
     console.log("onReady()", { message: "EA is ready." });
     log("onReady()", { message: "EA is reeadyyy." });
 
-    app.listen().then(() => {
-      app.on("sidebar:callStateChanged", (call) => {
+    embedded_app.listen().then(() => {
+      embedded_app.on("sidebar:callStateChanged", (call) => {
         console.log("Call state changed. Call object:", call);
         console.log("Call state changed. Call object:", { message: call });
 
         handleCallStateChange(call);
       });
-      app.on("application:viewStateChanged", (viewState) => {
+      embedded_app.on("application:viewStateChanged", (viewState) => {
         console.log("View state changed. Current view:", viewState);
         switch (viewState) {
           case "IN_FOCUS":
@@ -60,7 +60,7 @@ function handleCallStateChange(call) {
 }
 
 function initializeSideBar(callCount) {
-  app.context.getSidebar().then((s) => {
+  embedded_app.context.getSidebar().then((s) => {
       sidebar = s;
       console.log("Show a badge on the sidebar...")
       handleBadge(callCount, sidebar);

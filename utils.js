@@ -95,7 +95,7 @@ function handleSystemBrowserOAuth() {
     .then(function (response) {
       // Promise fulfilled, get authorization code from JSON response
       let authCode = response;
-      log("SSO flow got authorization code", authCode);
+      appendLogMessage("SSO flow got authorization code", authCode);
       // Exchange authorization code for a token with ID provider.
       // This part of the OAuth flow is the responsibility of the embedded app, for example:
       // exchangeCodeForToken(authCode);

@@ -93,7 +93,7 @@ function handleBadge(callCount, sidebar) {
 }
 
 app.onReady().then(() => {
-  console.log("onReady()", { message: "host app is ready" });
+  log("onReady()", { message: "host app is ready" });
 
   // Listen and emit any events from the EmbeddedAppSDK
   app.listen().then(() => {

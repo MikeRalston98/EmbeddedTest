@@ -1,16 +1,37 @@
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>Sidebar Apps Demo</title>
-    </head>
-    <body>
-        <h1>Cisco Directory 2</h1>
-        <script src="https://unpkg.com/@webex/embedded-app-sdk@latest"></script>
-        <script src="./index.js" defer></script>
-    </body>
-    <body>
-        <h2>You have Initiated the App</h2>
-        <div>
-            <ul id="console" />
-        </div>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Embedded App 3</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+    />
+    <!-- Import the app's stylesheet -->
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://unpkg.com/@webex/embedded-app-sdk@latest"></script>
+
+    <script src="./utils.js" defer></script>
+    <script src="./loginWithWebex.js" defer></script>
+    <!-- Import the app's javascript file -->
+    <script src="./index.js" defer></script>
+  </head>
+
+  <body>
+    <div>
+      <h2>Embedded App Kitchen Sink</h2>
+      <div>
+        <p>
+          This sample application shows how to utilize the Webex Embedded App
+          Framework to build an app.
+        </p>
+      </div>
+
+      <h4>Logs</h4>
+    </div>
+    <div class="logs">
+      <ul id="console"></ul>
+    </div>
+  </body>
 </html>
